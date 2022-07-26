@@ -22,7 +22,7 @@ const server = net.createServer((socket) => {
 		switch( objData.type ) {
 			case "message":
 				let channel = objData.channel;
-				let message = objData.message.replace( /(\[)+#*([0-9A-Z])+(\])/gi, '' ); //This will remove hexadecimal colors (example: [#ffff02])
+				let message = objData.message.replace( /\[#[0-9A-Z]+\]/gi, '' ); //This will remove hexadecimal colors (example: [#ffff02])
 				client.channels.cache.get(channel).send( message );
 			break;
 
